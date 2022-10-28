@@ -30,7 +30,7 @@ router.post('/login', (req, res) => {
                             (err, token) => {
                                 res.json({
                                     user,
-                                    token: "Bearer token" + token,
+                                    token: "Bearer token : " + token,
                                     success: true
                                 })
                             }
@@ -68,6 +68,14 @@ router.post('/register', (req, res) => {
             })
         })
     }
+})
+
+router.get('/:id', checkAuth, (req, res) => {
+    Users.findOne({_id: req.params.id }).then(user => {
+        res.json({ user, success: true })
+    }).catch( err => {
+        res.json({ success: false, message: err.message})
+    })
 })
 
 module.exports = router
