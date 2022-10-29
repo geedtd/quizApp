@@ -21,6 +21,7 @@ export default class Auth extends React.Component {
                 <div className="right">
                     <div className="header">Quiz App V1</div>
                     <div className="sub-header">Get ready to ace your quiz!</div>
+                    {page}
                 </div>
             </div>
         )
