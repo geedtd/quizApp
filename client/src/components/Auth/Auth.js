@@ -2,6 +2,7 @@ import React from 'react'
 import SignUp from './Signup'
 import SignIn from './Signin'
 import axios from 'axios'
+import './Auth.css' 
 
 export default class Auth extends React.Component {
 
