@@ -1,6 +1,7 @@
 import React from 'react'
 import SignUp from './Signup'
 import SignIn from './Signin'
+import axios from 'axios'
 
 export default class Auth extends React.Component {
 
@@ -11,8 +12,16 @@ export default class Auth extends React.Component {
         }
     }
 
+    signIn = (email, password) => {
+        console.log(email, password);
+    }
+
+    signUp = (firstName, lastName, email, password ) => {
+        
+    }
+
     render() {
-        let page = this.state.tab === 'signin' ? <SignIn/> : <SignUp/>
+        let page = this.state.tab === 'signin' ? <SignIn signIn={this.signIn}/> : <SignUp signUp={this.state.signUp}/>
         return (
             <div className="auth-wrapper">
                 <div className="left">
