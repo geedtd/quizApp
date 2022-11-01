@@ -22,7 +22,7 @@ export default class Auth extends React.Component {
     }
 
     render() {
-        let page = this.state.tab === 'signin' ? <SignIn signIn={this.signIn}/> : <SignUp signUp={this.state.signUp}/>
+        let page = this.state.tab === 'signin' ? <SignIn signIn={this.state.signIn}/> : <SignUp signUp={this.state.signUp}/>
         return (
             <div className="auth-wrapper">
                 <div className="left">
@@ -32,6 +32,7 @@ export default class Auth extends React.Component {
                     <div className="header">Quiz App V1</div>
                     <div className="sub-header">Get ready to ace your quiz!</div>
                     {page}
+                    <div className="new" onClick={() => (this.state.tab === 'signin') ? this.setState({tab: 'signup'}) : this.setState({tab: 'signin'})}> New User? Click here to Sign Up</div>
                 </div>
             </div>
         )

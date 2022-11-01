@@ -32,3 +32,9 @@ code {
   margin-left: auto;
   border-radius: 30px;
 }
+
+.auth-wrapper .new {
+  margin-top: 50px;
+  cursor: pointer;
+  color: rgb(148, 148, 148);
+}
