@@ -14,15 +14,25 @@ export default class Auth extends React.Component {
     }
 
     signIn = (email, password) => {
-        console.log(email, password);
+        axios.post('api/users/login', {email, password})
+        .then(res => {
+            console.log(res);
+        }).catch(err => {
+            console.log(err);
+        })
     }
 
-    signUp = (firstName, lastName, email, password ) => {
-        
+    signUp = ({firstName, lastName, email, password }) => {
+        axios.post('api/users/register', {firstName, lastName, email, password})
+        .then(res => {
+            console.log(res.data);
+        }).catch(err => {
+            console.log(err);
+        })
     }
 
     render() {
-        let page = this.state.tab === 'signin' ? <SignIn signIn={this.state.signIn}/> : <SignUp signUp={this.state.signUp}/>
+        let page = this.state.tab === 'signin' ? <SignIn signIn={this.signIn}/> : <SignUp signUp={this.signUp}/>
         return (
             <div className="auth-wrapper">
                 <div className="left">

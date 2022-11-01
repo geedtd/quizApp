@@ -31,7 +31,7 @@ export default class SignUp extends React.Component {
                     <div>Password</div>
                     <input type="password" className="password" placeholder='Enter your Password' value={this.state.password} onChange={ e => this.setState({password: e.target.value})}/>
                 </div>
-                <div className="btn input" onClick={() => this.props.signin(...this.state)}>
+                <div className="btn input" onClick={() => this.props.signUp({...this.state})}>
                     Sign Up
                 </div>
                 </div>
