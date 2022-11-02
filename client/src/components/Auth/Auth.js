@@ -2,9 +2,11 @@ import React from 'react'
 import SignUp from './Signup'
 import SignIn from './Signin'
 import axios from 'axios'
+import store from '../../store/index'
+import { withRouter } from '../withRouter'
 import './Auth.css' 
 
-export default class Auth extends React.Component {
+class Auth extends React.Component {
 
     constructor(props) {
         super(props)
@@ -18,8 +20,14 @@ export default class Auth extends React.Component {
         .then(res => {
             console.log(res);
             if(res.data.success) {
-                localStorage.setItem('JWT_PAYLOAD', res.data.token)
-                localStorage.setItem('_ID', res.data.user._id)
+                store.dispatch({
+                    type: 'login',
+                    _id: res.data.user._id,
+                    user: res.data.user,
+                    token: res.data.token
+                })
+                console.log(store.getState());
+                this.props.navigate('/dashboard')
             }
         }).catch(err => {
             console.log(err);
@@ -54,5 +62,6 @@ export default class Auth extends React.Component {
             </div>
         )
     }
-
 }
+
+export default withRouter(Auth)
