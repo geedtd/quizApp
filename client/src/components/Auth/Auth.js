@@ -17,6 +17,10 @@ export default class Auth extends React.Component {
         axios.post('api/users/login', {email, password})
         .then(res => {
             console.log(res);
+            if(res.data.success) {
+                localStorage.setItem('JWT_PAYLOAD', res.data.token)
+                localStorage.setItem('_ID', res.data.user._id)
+            }
         }).catch(err => {
             console.log(err);
         })
@@ -26,6 +30,9 @@ export default class Auth extends React.Component {
         axios.post('api/users/register', {firstName, lastName, email, password})
         .then(res => {
             console.log(res.data);
+            if (res.data.success) {
+                this.setState({tab: 'signin'})
+            }
         }).catch(err => {
             console.log(err);
         })
