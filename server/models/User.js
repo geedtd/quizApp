@@ -38,6 +38,10 @@ const UserSchema = new Schema ({
     deleted: {
         type: Boolean,
         default: false
+    },
+    teacher: {
+        type: Boolean,
+        default: false
     }
 })
 

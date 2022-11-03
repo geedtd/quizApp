@@ -3,10 +3,10 @@
     height: 100vh;
     padding: 30px;
     font-size: 1.2rem;
+    text-decoration: none;
 }
 .navbar-wrapper .header {
     padding-bottom: 15px;
-    font-style: italic;
 }
 
 .navbar-wrapper .name {
@@ -14,6 +14,6 @@
     font-size: 25px;
 }
 
-.navbar-wrapper .links Navlink  {
-    text-decoration: none !important;
+a {
+    text-decoration: none;
 }

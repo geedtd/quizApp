@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import Auth from './components/Auth/Auth'
+import CreateQuiz from './components/CreateQuiz/CreateQuiz';
 import Dashboard from './components/Dashboard/Dashboard';
 import store from './store';
 
@@ -28,6 +29,7 @@ class App extends React.Component {
         <Routes>
           <Route exact path='/' element={<Auth/>}/>
           <Route path='/dashboard' element={<Dashboard/>}/>
+          <Route path='/create-quiz' element={<CreateQuiz/>}/>
           <Route 
             path='*'
             element={<Navigate to='/' replace/>}
