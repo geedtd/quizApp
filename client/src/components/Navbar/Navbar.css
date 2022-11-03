@@ -13,6 +13,9 @@
     padding-bottom: 12px;
     font-size: 25px;
 }
+.navbar-wrapper .link {
+    padding-bottom: 10px;
+}
 
 a {
     text-decoration: none;

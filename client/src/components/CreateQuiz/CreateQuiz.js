@@ -21,7 +21,17 @@ export default class CreateQuiz extends React.Component {
 
     render() {
         return (
-            <div>Let's Create</div>
+            <div className="createquiz-wrapper">
+                <div>
+                    <Navbar />
+                </div>
+                <div className="main">
+                    <div className="header">Create a Quiz</div>
+                    <div className="form card">
+                        <input type="text" />
+                    </div>
+                </div>
+            </div>
         )
     }
 }
