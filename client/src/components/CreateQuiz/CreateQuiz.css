@@ -8,3 +8,9 @@
     padding-top: 35px;
     font-family: 'Ubuntu', sans-serif;
 }
+
+.createquiz-wrapper .btn {
+    display: flex;
+    width: 50%;
+    
+}

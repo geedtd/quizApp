@@ -13,7 +13,7 @@ export default class CreateQuiz extends React.Component {
             mustBeSignedIn: false,
             questions: [],
             name: '',
-            addQuestions: false,
+            addQuestion: false,
             answers: [],
             correctAnswer: ''
         }
@@ -27,6 +27,33 @@ export default class CreateQuiz extends React.Component {
         } else {
             this.setState({mustBeSignedIn: false})
         }
+    }
+
+    removeQuestion = (question) => {
+        this.setState({
+            questions: this.setState.questions.filter(ques => ques.questionName !== question.questionName)
+        })
+    }
+
+    saveQuiz = () => {
+        let quiz = {
+            mustBeSignedIn: this.state.mustBeSignedIn,
+            name: this.state.name,
+            questions: this.state.questions,
+            category: this.state.categoryVal
+        }
+        axios.post('/api/quizzes/create', {quiz, createdBy: localStorage.getItem('_ID')})
+        .then(res => {
+            if (res.data.success) {
+                this.setState({
+                    questions: [],
+                    answers: [],
+                    categoryVal: 'Math'
+                })
+            }
+        }).catch (err => {
+            console.log(err);
+        })
     }
 
     render() {
@@ -60,6 +87,23 @@ export default class CreateQuiz extends React.Component {
                                 onChange={this.selectPrivate}
                             />
                         </div>
+
+                        {this.state.questions.map((ques, idx) => {
+                            <div className="question" key={idx}>
+                                <div>{ques.questionName}</div>
+                                <div>Correct Answer: {ques.correctAnswer}</div>
+                                <div>Number of Answers: {ques.answers.length}</div>
+                                <span className="btn delete" onClick={() => this.removeQuestion(ques)}>Delete</span>
+                            </div>
+                        })}
+
+                        <div className="question">
+                            <div className="add-question" onClick={() => this.setState({addQuestion: true})}>Add Question</div>
+                        </div>
+
+                        <span className='btn save-quiz' onClick={()=> this.saveQuiz()} >Save Quiz</span>
+
+                        
                     </div>
                 </div>
             </div>
