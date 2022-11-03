@@ -36,6 +36,21 @@ export default class CreateQuiz extends React.Component {
         })
     }
 
+    saveQuestion = () => {
+        let question = {
+            answers: this.state.answers,
+            correctAnswer: this.state.correctAnswer,
+            questionName: this.state.questionName
+        }
+        this.setState({
+            questions: this.state.questions.concat(question),
+            addQuestion: false,
+            questionName: '',
+            answers: [],
+            correctAnswer: ''
+        });
+    }
+
     saveQuiz = () => {
         let quiz = {
             mustBeSignedIn: this.state.mustBeSignedIn,
