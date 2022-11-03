@@ -15,7 +15,8 @@ export default class CreateQuiz extends React.Component {
             name: '',
             addQuestion: false,
             answers: [],
-            correctAnswer: ''
+            correctAnswer: '',
+            questionName: ''
         }
     }
 
@@ -56,6 +57,20 @@ export default class CreateQuiz extends React.Component {
         })
     }
 
+    updateAnswer = (e , i) => {
+        let newArr = Object.assign([], this.state.answers)
+        newArr[i] = e.target.value
+        this.setState({
+            answers: newArr
+        })
+    }
+
+    addAnswer = () => {
+        this.setState({
+            answers: this.state.answers.concat('')
+        })
+    }
+
     render() {
         return (
             <div className="createquiz-wrapper">
@@ -88,14 +103,14 @@ export default class CreateQuiz extends React.Component {
                             />
                         </div>
 
-                        {this.state.questions.map((ques, idx) => {
+                        {this.state.questions.map((ques, idx) => (
                             <div className="question" key={idx}>
                                 <div>{ques.questionName}</div>
                                 <div>Correct Answer: {ques.correctAnswer}</div>
                                 <div>Number of Answers: {ques.answers.length}</div>
                                 <span className="btn delete" onClick={() => this.removeQuestion(ques)}>Delete</span>
                             </div>
-                        })}
+                        ))}
 
                         <div className="question">
                             <div className="add-question" onClick={() => this.setState({addQuestion: true})}>Add Question</div>
@@ -103,6 +118,40 @@ export default class CreateQuiz extends React.Component {
 
                         <span className='btn save-quiz' onClick={()=> this.saveQuiz()} >Save Quiz</span>
 
+                        <Dialog model={this.state.addQuestion}>
+                            <div className="new-question-form">
+                                <input 
+                                    className='input' 
+                                    placeholder='Question' 
+                                    value={this.state.questionName}
+                                    onChange={e => this.setState({questionName: e.target.value})}        
+                                />
+                                <div>Answers</div> 
+                                {this.state.answers.map((ans, idx) => (
+                                    <div className="answer-form" key={idx}>
+                                        <input 
+                                            type="radio"
+                                            value={this.state.ans}
+                                            onChange={e => this.setState({correctAnswer: ans})}
+                                            name="answer"
+                                        />
+                                        <input
+                                            className='input' 
+                                            type="text" 
+                                            placeholder='Answer'
+                                            value={this.state.answers[idx]}
+                                            onChange={e => this.updateAnswer(e, idx)}
+                                        />
+                                    </div>
+                                ))} 
+                                <div className="add-answer" onClick={this.addAnswer}>Add Answer</div>
+                                <div className="btn-wrapper">
+                                    <div className="btn" onClick={() => this.setState({addQuestion: false})}>Close</div>
+                                    <div className="btn" onClick={this.saveQuestion}>Save</div>
+                                </div>
+                            </div>
+
+                        </Dialog>
                         
                     </div>
                 </div>
