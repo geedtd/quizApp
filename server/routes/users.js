@@ -47,13 +47,14 @@ router.post('/register', (req, res) => {
     if (!isValid) {
         res.json({ success: false, errors });
     } else {
-        const { firstName, lastName, email, password } = req.body;
+        const { firstName, lastName, email, password, teacher } = req.body;
         const registerUser = new Users({
             firstName,
             lastName,
             email,
             password,
-            createdAt: new Date()
+            createdAt: new Date(),
+            teacher
         });
         bcrypt.genSalt(10, (err, salt) => {
             bcrypt.hash(registerUser.password, salt, (hashErr, hash) => {

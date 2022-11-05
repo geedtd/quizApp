@@ -34,8 +34,8 @@ class Auth extends React.Component {
         })
     }
 
-    signUp = ({firstName, lastName, email, password }) => {
-        axios.post('api/users/register', {firstName, lastName, email, password})
+    signUp = ({firstName, lastName, email, password, teacher }) => {
+        axios.post('api/users/register', {firstName, lastName, email, password, teacher})
         .then(res => {
             console.log(res.data);
             if (res.data.success) {

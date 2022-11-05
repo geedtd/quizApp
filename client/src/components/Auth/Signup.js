@@ -8,8 +8,8 @@ export default class SignUp extends React.Component {
             password: '',
             firstName: '',
             lastName: '',
-            passcode: '',
-            teacher: false
+            teacher: false,
+            passcode: ''
         }
     }
 
@@ -38,7 +38,7 @@ export default class SignUp extends React.Component {
 
                 {this.state.passcode === '03251994' ? 
                     <div className='input-wrapper'>
-                        <input type="radio" className='teacher'  value={this.state.teacher} onChange={e => this.setState({teacher: e.target.value = true})}/> Click to sign up as a teacher
+                        <input type="checkbox" className='teacher'  value={this.state.teacher} onChange={e => this.setState({teacher: true})}/> Click to sign up as a teacher
                     </div> 
                     : <div>Invalid code</div>
                 }
@@ -47,7 +47,7 @@ export default class SignUp extends React.Component {
                     <div>Password</div>
                     <input type="password" className="password" placeholder='Enter your Password' value={this.state.password} onChange={ e => this.setState({password: e.target.value})}/>
                 </div>
-                <div className="btn input" onClick={() => this.props.signUp({...this.state})}>
+                <div className="btn input" onClick={() => this.props.signUp({...this.state})} >
                     Sign Up
                 </div>
                 </div>
