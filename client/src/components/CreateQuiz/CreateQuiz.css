@@ -4,6 +4,7 @@
     width: 100%;
 }
 .createquiz-wrapper .main {
+    margin-left: 100px;
     width: 100%;
     padding-top: 35px;
     font-family: 'Ubuntu', sans-serif;

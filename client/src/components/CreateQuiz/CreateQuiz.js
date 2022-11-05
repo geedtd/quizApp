@@ -32,7 +32,7 @@ export default class CreateQuiz extends React.Component {
 
     removeQuestion = (question) => {
         this.setState({
-            questions: this.setState.questions.filter(ques => ques.questionName !== question.questionName)
+            questions: this.state.questions.filter(ques => ques.questionName !== question.questionName)
         })
     }
 
@@ -121,8 +121,8 @@ export default class CreateQuiz extends React.Component {
                         {this.state.questions.map((ques, idx) => (
                             <div className="question" key={idx}>
                                 <div>{ques.questionName}</div>
-                                <div>Correct Answer: {ques.correctAnswer}</div>
-                                <div>Number of Answers: {ques.answers.length}</div>
+                                <div>Correct Choice: {ques.correctAnswer}</div>
+                                <div>Number of Choices: {ques.answers.length}</div>
                                 <span className="btn delete" onClick={() => this.removeQuestion(ques)}>Delete</span>
                             </div>
                         ))}
@@ -141,7 +141,7 @@ export default class CreateQuiz extends React.Component {
                                     value={this.state.questionName}
                                     onChange={e => this.setState({questionName: e.target.value})}        
                                 />
-                                <div>Answers</div> 
+                                <div>Choices</div> 
                                 {this.state.answers.map((ans, idx) => (
                                     <div className="answer-form" key={idx}>
                                         <input 
@@ -159,7 +159,7 @@ export default class CreateQuiz extends React.Component {
                                         />
                                     </div>
                                 ))} 
-                                <div className="add-answer" onClick={this.addAnswer}>Add Answer</div>
+                                <div className="add-answer" onClick={this.addAnswer}>Add Choice</div>
                                 <div className="btn-wrapper">
                                     <div className="btn" onClick={() => this.setState({addQuestion: false})}>Close</div>
                                     <div className="btn" onClick={this.saveQuestion}>Save</div>
